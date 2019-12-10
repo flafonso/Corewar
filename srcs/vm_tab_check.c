@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_tab_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adietric <adietric@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:54:39 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/09 18:16:45 by adietric         ###   ########.fr       */
+/*   Updated: 2019/12/10 02:40:09 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 t_op_check    op_tab[17] =
 {

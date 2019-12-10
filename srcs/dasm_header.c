@@ -6,11 +6,11 @@
 /*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 17:38:49 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/10 02:23:57 by flafonso         ###   ########.fr       */
+/*   Updated: 2019/12/10 03:08:26 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 size_t		dasm_hexalen(uint8_t *cor_content, size_t len)
 {
@@ -81,5 +81,4 @@ void		dasm_get_header(t_all *all, size_t cor_size, uint8_t **cor_content
 	champs->exec_code = recup_ex_code(&(champs->len_exec_code), cor_content[0]);
 	if (!(champs->name) || !(champs->comment) || !(champs->exec_code))
 		error(all, "Malloc error\n");
-	all->nb_champ++;
 }

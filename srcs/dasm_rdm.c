@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dasm_rdm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adietric <adietric@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 18:18:49 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/09 16:33:55 by adietric         ###   ########.fr       */
+/*   Updated: 2019/12/10 02:40:09 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 int			is_in(int i, int *value)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_check_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adietric <adietric@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 14:48:34 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/09 21:58:42 by adietric         ###   ########.fr       */
+/*   Updated: 2019/12/10 02:40:09 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 uint16_t	vm_check_exec(t_all *all, t_champs *champs, uint8_t *cont, t_op *op)
 {

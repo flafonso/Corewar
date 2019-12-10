@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_start.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adietric <adietric@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 16:01:39 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/09 21:41:15 by adietric         ###   ########.fr       */
+/*   Updated: 2019/12/10 02:59:32 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 void	vm_start(t_all *all)
 {
@@ -19,10 +19,10 @@ void	vm_start(t_all *all)
 	int			i;
 	uint16_t	index;
 
-	index = vm_init(op);
+	index = init_op_check(op);
 	id = 1;
-																						printf("\n\n	Nb_champ = %d\n", all->nb_champ);
-	while (id <= all->nb_champ)
+																						printf("\n\n	Nb_champ = %d\n", all->total_champ);
+	while (id <= all->total_champ)
 	{
 		index = 0;
 		i = 0;

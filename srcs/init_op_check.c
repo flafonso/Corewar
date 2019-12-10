@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_init.c                                          :+:      :+:    :+:   */
+/*   init_op_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adietric <adietric@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 16:04:38 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/09 21:57:54 by adietric         ###   ########.fr       */
+/*   Updated: 2019/12/10 03:00:25 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/point.h"
+#include "../includes/vm.h"
 
 
 void		init_name_op(t_op *op)
@@ -53,7 +53,7 @@ void		init_link_op(t_op *op)
 	op[15].inst = op_aff;
 }
 
-uint16_t	vm_init(t_op *op)
+uint16_t	init_op_check(t_op *op)
 {
 	ft_bzero(op, sizeof(t_op) * 17);
 	init_link_op(op);

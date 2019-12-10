@@ -6,11 +6,11 @@
 #    By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/03 13:22:46 by adietric          #+#    #+#              #
-#    Updated: 2019/12/10 02:33:43 by flafonso         ###   ########.fr        #
+#    Updated: 2019/12/10 03:10:23 by flafonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = dasm
+NAME = corewar
 
 LIB_NAME = libft.a
 LIB_PATH = ./libft
@@ -30,11 +30,13 @@ SRCS_NAME = dasm_get_data.c		\
 			dasm_rdm.c			\
 			print_all.c			\
 			vm_print_intro.c	\
-			vm_init.c			\
+			init_op_check.c		\
 			vm_start.c			\
 			vm_check_exec.c		\
 			vm_tab_check.c		\
-			vm_op.c
+			vm_op.c				\
+			vm_load_processes.c	\
+			vm_init_arena.c
 
 MAIN_NAME = main.c
 
@@ -47,7 +49,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJM = $(addprefix $(OBJM_PATH)/,$(OBJM_NAME))
 
-INCL = ./includes/point.h
+INCL = ./includes/vm.h
 
 CC = gcc -g3
 
