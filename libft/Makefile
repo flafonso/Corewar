@@ -5,83 +5,70 @@
 #                                                     +:+ +:+         +:+      #
 #    By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/04/03 13:22:46 by adietric          #+#    #+#              #
-#    Updated: 2019/12/10 02:33:43 by flafonso         ###   ########.fr        #
+#    Created: 2019/11/30 14:41:01 by flafonso          #+#    #+#              #
+#    Updated: 2019/11/30 16:10:42 by flafonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = dasm
+NAME = libft.a
 
-LIB_NAME = libft.a
-LIB_PATH = ./libft
-SRCS_PATH = ./srcs
-OBJ_PATH = ./obj
-MAIN_PATH = ./main
-OBJM_PATH = ./main
+OBJ_PATH = ./obj_lib
+SRC_PATH = ./
 
-SRCS_NAME = dasm_get_data.c		\
-			dasm_get_exec.c		\
-			dasm_header.c		\
-			dasm_input.c		\
-			dasm_is_cor.c		\
-			dasm_print_usage.c	\
-			dasm_realloc.c		\
-			dasm_init.c			\
-			dasm_rdm.c			\
-			print_all.c			\
-			vm_print_intro.c	\
-			vm_init.c			\
-			vm_start.c			\
-			vm_check_exec.c		\
-			vm_tab_check.c		\
-			vm_op.c
+SRC_NAME =	ft_atol.c ft_lstaddend.c ft_numlen.c getchar.c get_next_line.c		\
+		ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c			\
+		ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c			\
+		ft_strnstr.c ft_strcmp.c ft_strncmp.c ft_atoi.c ft_isalpha.c			\
+		ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c		\
+		ft_tolower.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c			\
+		ft_memmove.c ft_memchr.c ft_memcmp.c ft_memalloc.c ft_memdel.c			\
+		ft_strnew.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c			\
+		ft_strequ.c ft_strnequ.c ft_strjoin.c ft_strsub.c ft_strtrim.c			\
+		ft_putchar.c ft_putstr.c ft_putendl.c ft_pfputnbr.c ft_putchar_fd.c		\
+		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strdel.c ft_strmapi.c	\
+		ft_itoa.c ft_strsplit.c ft_revmemcpy.c ft_lstnew.c ft_lstdelone.c		\
+		ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_wordcounter.c		\
+		ft_isspace.c ft_sqrt.c ft_factorial.c ft_swap.c ft_char.c ft_flags.c	\
+		ft_hex.c ft_int.c ft_itoa_base.c ft_octal.c ft_percent.c ft_point.c		\
+		ft_printf.c ft_str.c ft_uitoa_base.c ft_unint.c ft_read.c ft_float.c	\
+		ft_itoa_float.c ft_error.c ft_specifiers.c ft_buffer.c ft_returnerror.c	\
+		ft_roundstr.c ft_readu.c ft_numlen.c ft_unumlen.c ft_printfloat.c		\
+		ft_putstrb.c ft_uputnbr.c ft_pfputnbr.c ft_binary.c ft_puissance.c		\
+		ft_putnbr.c ft_reverse.c
 
-MAIN_NAME = main.c
+HEAD = libft.h get_next_line.h
 
-OBJLIB_NAME = $(LIB_NAME:.c=.o)
-OBJ_NAME = $(SRCS_NAME:.c=.o)
-OBJM_NAME = $(MAIN_NAME:.c=.o)
-
-LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
-SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-OBJM = $(addprefix $(OBJM_PATH)/,$(OBJM_NAME))
-
-INCL = ./includes/point.h
-
+CFLAGS = -Wall -Werror -Wextra
 CC = gcc -g3
 
-FLAG = -Wall -Werror -Wextra
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
 .PHONY: all clean fclean re
 
-all: lib $(NAME)
+all: $(NAME)
 
-lib: $(LIB_PATH)
-	@make -C $(LIB_PATH)
+$(NAME): $(OBJ)
+	@ar -rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "$(BOLD)$(GREY)  *lib-$(GREEN)[$(NAME) done]$(END)"
 
-$(NAME): $(LIB) $(OBJ) $(OBJM) $(INCL)
-	@$(CC) $(FLAG) $(OBJM) $(LIB) $(OBJ) -I $(INCL) -o $(NAME)
-	@echo "$(BOLD)$(GREY)*dasm-$(GREEN)[$(NAME) done]$(END)"
-
-$(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 
-$(OBJM_PATH)/%.o: $(MAIN_PATH)/%.c
-	@mkdir $(OBJM_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
-
 clean:
-	@make clean -C ./libft
-	@rm -rf $(OBJ) $(OBJM)
+	@/bin/rm -rf $(OBJ)
 	@rm -rf $(OBJ_PATH)
-	@echo "$(BOLD)$(GREY)*dasm-$(GREEN)[clean]$(END)"
+	@echo "$(BOLD)$(GREY)  *lib-$(GREEN)[clean]$(END)"
 
 fclean: clean
-	@make just_f -C ./libft
-	@rm -f $(NAME)
-	@echo "$(BOLD)$(GREY)*dasm-$(GREEN)[fclean]$(END)"
+	@/bin/rm -rf $(NAME)
+	@echo "$(BOLD)$(GREY)  *lib-$(GREEN)[fclean]$(END)"
+
+just_f:
+	@/bin/rm -rf $(NAME)
+	@echo "$(BOLD)$(GREY)  *lib-$(GREEN)[fclean]$(END)"
 
 re: fclean all
 
