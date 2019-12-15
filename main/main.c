@@ -6,7 +6,7 @@
 /*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:27:16 by flafonso          #+#    #+#             */
-/*   Updated: 2019/12/10 02:45:42 by flafonso         ###   ########.fr       */
+/*   Updated: 2019/12/12 15:43:34 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int main(int ac, char **av)
 	}
 	if (run_vm(&vm) == -1)
 	{
-		//free the things;
+		
+		// free the things;
 		return (0);
 	}
+	// notre_truc_a_nous(&vm);
 	dasm_free(&vm);
 	//free the vm
 }

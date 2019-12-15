@@ -6,7 +6,7 @@
 /*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 17:58:42 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/10 02:40:09 by flafonso         ###   ########.fr       */
+/*   Updated: 2019/12/10 03:19:21 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	error_size(t_all *all, char *path, size_t cor_size)
 	ft_putnbr(CHAMP_MAX_SIZE);
 	ft_putstr(" bytes)\n");
 	dasm_free(all);
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }
 
 void	error(t_all *all, char *str)
@@ -63,5 +63,5 @@ void	print_usage(t_all *all)
 	ft_putstr("Usage: ./vm_champs/corewar [-d N -s N -v N | -b --stealth");
 	ft_putstr("| -n --stealth] [-a] <champion1.cor> <...>");
 	dasm_free(all);
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }

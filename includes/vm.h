@@ -6,7 +6,7 @@
 /*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 02:40:33 by flafonso          #+#    #+#             */
-/*   Updated: 2019/12/10 03:09:50 by flafonso         ###   ########.fr       */
+/*   Updated: 2019/12/12 16:29:34 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #define VM_H
 
 #include <stdio.h>
+#include "../libft/ft_printf.h"
 #include "../libft/libft.h"
 #include "op.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+
 #define	BUFF_SIZE	256
 
 typedef	struct		s_champs
@@ -30,50 +32,47 @@ typedef	struct		s_champs
 	size_t				len_exec_code;
 	unsigned char		*exec_code;
 	int					start;
+	int					last_live;
 	int					pc;
 }					t_champs;
 
 typedef struct		s_arena
 {
-	
 	int				live_calls;
 	int				cycles;
-	
-	
 }					t_arena;
+
+typedef struct			s_process
+{
+	int					id;
+	int					r[REG_NUMBER];
+	int					pc;
+	char				carry;
+	int					live_calls;
+	int					start;
+	int					exec_cycle;
+	int					bytes;
+	int					*decode;
+	unsigned char 		op;
+	struct s_process	*next;
+}						t_process;
 
 typedef struct		s_all
 {
-	struct	s_champs	champs[MAX_PLAYERS + 1];
+	struct	s_champs	champs[MAX_PLAYERS];
 	int					flag_dump;
 	int					flag_n;
 	int					total_champ;
 	unsigned char		*arena;
 	t_list				processes;
 	int					last_alive;
+	int					last_alive_cycle;
 	int					cycles;
+	int					nbr_live_since_check;
+	int					cycles_to_die;
+	int					total_checks;
 	int					check_mode;
 }					t_all;
-
-typedef struct			s_process
-{
-	unsigned char				*name;
-	int					id;
-//	int					number;
-	int					r[REG_NUMBER];
-	int					pc;
-	char				carry;
-	int					live_calls;
-	int					duration;
-	int					start;
-	int					bytes;
-	int					*decode;
-	int					len_program;
-	unsigned char				*program;
-//	void				(*op)();
-	unsigned char 				op;
-	struct s_process	*next;
-}						t_process;
 
 typedef	struct		s_op
 {
@@ -95,7 +94,7 @@ t_op_check   	 op_tab[17];
 
 void			dasm_get_header(t_all *all, size_t cor_size, uint8_t **cor_content, t_champs *champs);
 size_t			dasm_get_data(t_all	*all, char *cor_file, uint8_t **cor_content);
-int				dsam_get_exec_code(uint8_t *cor_content);
+int				dasm_get_exec_code(uint8_t *cor_content, int len);
 void			*dasm_memmalloccopy(void *content, size_t prev_size, size_t all_size);
 void			vm_print_intro(t_all *all);
 void			dasm_input(int ac, char **av, t_all *all);
@@ -114,9 +113,24 @@ int     		run_vm(t_all *vm);
 void			error_exec(t_all *all, char *champ_name, uint16_t line);
 
 int				is_in(int i, int *value);
+void			do_op(t_all *all, t_op *op, char *name_op, uint8_t *cont);
 void			vm_start(t_all *all);
 uint16_t		init_op_check(t_op *op);
+void			calc_bytes(t_process *p, int *bytes);
+t_process		*ft_decode_byte(unsigned char c, t_process *p);
+void			calc_bytes(t_process *p, int *bytes);
+int				get_next_bytes(t_all *vm, t_process *p, int len, int bytes_read);
+int         	check_alive(t_all *vm, t_process *p);
+int				is_player_nb(int i, t_all *vm);
+int     		get_reg_val(t_all *vm, t_process *p, int reg);
+int     		get_ind(t_all *vm, t_process *p, int bytes_read);
+void			load_value(t_all *vm, int address, int len, int val);
+
 uint16_t		vm_check_exec(t_all *all, t_champs *champs, uint8_t *cont, t_op *op);
+
+// operations
+void			op_live_f(t_all *vm, t_process *p);
+void    		op_st_f(t_all *vm, t_process *p);
 uint16_t		op_add(t_all *all, t_op *op, uint8_t *content);
 uint16_t		op_aff(t_all *all, t_op *op, uint8_t *content);
 uint16_t		op_and(t_all *all, t_op *op, uint8_t *content);
@@ -134,6 +148,10 @@ uint16_t		op_sub(t_all *all, t_op *op, uint8_t *content);
 uint16_t		op_xor(t_all *all, t_op *op, uint8_t *content);
 uint16_t		op_zjmp(t_all *all, t_op *op, uint8_t *content);
 
+void			notre_truc_a_nous(t_all *all);
+
+//errors
+t_process *error_process(t_process *p);
 
 #endif
 

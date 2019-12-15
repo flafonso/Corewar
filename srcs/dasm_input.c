@@ -6,7 +6,7 @@
 /*   By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 17:56:17 by adietric          #+#    #+#             */
-/*   Updated: 2019/12/10 02:40:09 by flafonso         ###   ########.fr       */
+/*   Updated: 2019/12/13 12:46:51 by flafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ int			flag_n(int ac, char **av, t_all *all, int *j)
 
 	n_id = 0;
 	i = 0;
-	while ((i) < ac && (ft_strcmp(av[(i)], "-n") != 0))
-		(i)++;
-	if (av[(i) + 1])
-		n_id = ft_atoi(av[(i) + 1]);
-	if (n_id < 1 || n_id > 4 || (av[(i) + 1]
-		&& just_number(av[(i) + 1]) != 1))
+	while (i < ac && (ft_strcmp(av[i], "-n") != 0))
+		i++;
+	if (av[i + 1])
+		n_id = ft_atoi(av[i + 1]);
+	if (n_id < 1 || n_id > 4 || (av[i + 1]
+		&& just_number(av[i + 1]) != 1))
 		print_usage(all);
-	if (av[(i) + 2] && dasm_is_it_cor(av[(i) + 2]) == 1)
+	if (av[i + 2] && dasm_is_it_cor(av[i + 2]) == 1)
 	{
-		all->champs[n_id - 1].path = ft_strdup(av[(i) + 2]);
+		all->champs[n_id - 1].path = ft_strdup(av[i + 2]);
 		all->champs[n_id - 1].id = n_id;
 	}
 	else
