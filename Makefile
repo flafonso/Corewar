@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flafonso <flafonso@student.42.fr>          +#+  +:+       +#+         #
+#    By: adietric <adietric@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/03 13:22:46 by adietric          #+#    #+#              #
-#    Updated: 2019/12/15 14:31:45 by flafonso         ###   ########.fr        #
+#    Updated: 2019/12/10 15:50:12 by adietric         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,8 @@ SRCS_NAME = dasm_get_data.c			\
 			vm_check_exec.c			\
 			vm_tab_check.c			\
 			vm_load_processes.c		\
-			vm_errors.c 			\
-			vm_decode_bytes.c		\
-			vm_get_values.c			\
-			vm_operations.c 		\
+			notre_truc_a_nous.c		\
 			vm_init_arena.c
-#			notre_truc_a_nous.c		\
 
 OP_NAME =	op_add.c	\
 			op_aff.c	\
@@ -87,7 +83,7 @@ lib: $(LIB_PATH)
 	@make -C $(LIB_PATH)
 
 $(NAME): $(LIB) $(OBJ) $(OBJM) $(INCL) $(OBJOP)
-	@$(CC) $(FLAG) $(OBJM) $(LIB) $(OBJ) $(OBJOP) -I $(INCL) -o $(NAME)
+	@$(CC) $(FLAG) $(OBJOP) $(OBJM) $(LIB) $(OBJ) -I $(INCL) -o $(NAME)
 	@echo "$(BOLD)$(GREY)*dasm-$(GREEN)[$(NAME) done]$(END)"
 
 $(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c
